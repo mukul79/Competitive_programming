@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+void insrt(stack<int> &v,int temp)
+{
+    if(v.size()==0 || (v.top()>=temp))
+    {
+        v.push(temp);
+        return;
+    }
+        int t = v.top();v.pop();
+        insrt(v,temp);
+        v.push(t);
+}
+
+void srt(stack<int> &v)
+{
+    if(v.size()==1) return;
+    int t=v.top();v.pop();
+    srt(v);
+    insrt(v,t);
+}
+
+int main()
+{
+    int n;cin>>n;
+    stack<int> v;
+    for(int i=0;i<n;i++)
+    {
+        int t;
+        cin>>t;
+        v.push(t);
+    }
+    srt(v);
+    for(int i=0;i<n;i++)
+    {
+        cout<<v.top()<<" ";v.pop();
+    }
+    return 0;
+}
