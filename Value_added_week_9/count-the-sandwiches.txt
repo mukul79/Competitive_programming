@@ -1,0 +1,25 @@
+// https://www.hackerrank.com/contests/v-b-w9/challenges/m1p4l16count-the-sandwiches
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+int main() {
+    ll t;
+    cin>>t;
+    while(t--){
+        
+        ll n,k;
+        cin>>n>>k;
+        ll tp=n;
+        ll res=0;
+        res = n/k;
+        n = res+n%k;
+        while(n>=k){
+            ll nw = n/k;
+            res+=nw;
+            n = nw+n%k;
+        }
+        cout<<res+tp<<"\n";
+    }
+    return 0;
+}
