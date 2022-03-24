@@ -1,0 +1,40 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+typedef long long ll;
+
+int main() {
+    ll n,k;
+    cin>>n>>k;
+    vector<ll> a(n);
+    for(ll &x:a) cin>>x;
+    ll cnt=0;
+    int j = 0;
+    int res = 0;
+    ll st=-1,e=-1;
+    for (int i = 0; i < n; i++) {
+        if (a[i] == 0)
+            cnt++;
+ 
+        while (cnt > k) {
+            if (a[j] == 0)
+                cnt--;
+            j++;
+        }
+        if(res<i - j + 1){
+            st = j,e=i;
+        }
+        res = max(res, i - j + 1);
+    }
+    if(e>=0){
+        for(ll i=st;i<=e;i++){
+            a[i] = 1;
+        }
+    }
+    cout<<res<<"\n";
+    for(ll &x:a) cout<<x<<" ";
+    return 0;
+}
